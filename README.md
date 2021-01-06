@@ -3,6 +3,8 @@ Angular 10 + Spring Boot CRUD Full Stack App
 
 This is the backend of the project. You can see the front-end of the project [here](https://github.com/LordDetson/employee-list-client).
 
+Created according to [this guide](https://youtube.com/playlist?list=PLGRDMO4rOGcNzi3CpBWsCdQSzbjdWWy-f). Great thanks to [Ramesh Fadatare](https://github.com/RameshMF)!
+
 ## Commit flags
 
 config: - project setting
