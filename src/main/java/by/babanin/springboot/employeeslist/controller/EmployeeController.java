@@ -6,7 +6,9 @@ import by.babanin.springboot.employeeslist.repository.EmployeeRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/")
@@ -45,6 +47,14 @@ public class EmployeeController {
 
         Employee updatedEmployee = employeeRepository.save(employeeToUpdate);
         return ResponseEntity.ok(updatedEmployee);
+    }
+
+    @DeleteMapping("/employee/{id}")
+    public ResponseEntity<Map<String, Boolean>> delete(@PathVariable Long id) {
+        Employee employee = findById(id);
+        employeeRepository.delete(employee);
+        Map<String, Boolean> response = Collections.singletonMap("deleted", true);
+        return ResponseEntity.ok(response);
     }
 
     private Employee findById(Long id) {
