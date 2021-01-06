@@ -1,7 +1,9 @@
 package by.babanin.springboot.employeeslist.controller;
 
+import by.babanin.springboot.employeeslist.exception.ResourceNotFoundException;
 import by.babanin.springboot.employeeslist.model.Employee;
 import by.babanin.springboot.employeeslist.repository.EmployeeRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,5 +26,12 @@ public class EmployeeController {
     @PostMapping("/employee/create")
     public Employee createEmployee(@RequestBody Employee employee) {
         return employeeRepository.save(employee);
+    }
+
+    @GetMapping("/employee/{id}")
+    public ResponseEntity<Employee> getById(@PathVariable Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee isn't exist with id " + id));
+        return ResponseEntity.ok(employee);
     }
 }
